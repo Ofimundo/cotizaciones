@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impresora HP LaserJet Pro - Ofimundo</title>
+    <title>Ofimundo - Propuesta 1 Moderna</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!--Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
         :root {
-            --ofimundo-purple: #4a3b7f;
-            --ofimundo-magenta: #c73b6e;
-            --ofimundo-red: #e94b57;
+            --ofimundo-purple: #2e2096;
+            --ofimundo-magenta: #e3314f;
+            --ofimundo-red: #e3314f;
             --ofimundo-navy: #2d2944;
+            --ofimundo-logo-o: 16px;
         }
         
         .bg-ofimundo-purple { background-color: var(--ofimundo-purple); }
@@ -22,442 +25,557 @@
         .text-ofimundo-red { color: var(--ofimundo-red); }
         .text-ofimundo-navy { color: var(--ofimundo-navy); }
         .border-ofimundo-purple { border-color: var(--ofimundo-purple); }
-        .border-ofimundo-magenta { border-color: var(--ofimundo-magenta); }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-        * {
-        font-family: 'Inter', sans-serif;
+        .text-ofimundo-navy { color: var(--ofimundo-navy); }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
-        /* Fondo modal */
-        .modal-backdrop {
-        background-color: rgba(45, 41, 68, 0.7);
-        backdrop-filter: blur(4px);
+        .banner-section {
+            width: 100%;
         }
 
-        /* =========================
-        Indicador de pasos
-        ========================= */
-        .step-indicator {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        transition: all 0.2s ease;
+        .banner-container {
+            width: 100%;
         }
 
-        .step-indicator.active {
-        background-color: var(--color-primary);
-        color: #ffffff;
-        font-weight: 600;
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .step-indicator.completed {
-        background-color: #22c55e;
-        color: #ffffff;
-        font-weight: 600;
+        /* Chat bubbles */
+        .chat-bubble {
+            animation: bubbleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .step-indicator.pending {
-        background-color: #e5e7eb;
-        color: #6b7280;
+        @keyframes bubbleIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
-        /* =========================
-        Calendario
-        ========================= */
-        .calendar-day {
-        width: 2.5rem;
-        height: 2.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        }
-
-        .calendar-day:hover:not(.disabled):not(.selected) {
-        background-color: #ede9fe;
-        transform: scale(1.1);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .calendar-day.selected {
-        background-color: #22c55e;
-        color: #ffffff;
+        .title-xl {
+        font-size: 3rem;
+        line-height: 1.25;
+        letter-spacing: -0.025rem;
         font-weight: 700;
-        transform: scale(1.05);
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
 
-        .calendar-day.disabled {
-        background-color: #f3f4f6;
-        color: #9ca3af;
-        cursor: not-allowed;
-        text-decoration: line-through;
-        opacity: 0.6;
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+            }
+
+            .text-gradient.text-primary {
+            background-image: linear-gradient(195deg, #2E2096 0%, #E3314F 100%)}
+
+        .assistant-bubble {
+            background: white;
+            border-radius: 20px 20px 20px 4px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
 
-        .calendar-day.today {
-        border: 2px solid #a855f7;
+        .user-bubble {
+            background: linear-gradient(135deg, var(--ofimundo-purple), var(--ofimundo-magenta));
+            border-radius: 20px 20px 4px 20px;
+            color: white;
         }
 
-        /* =========================
-        Horarios
-        ========================= */
-        .time-slot {
-        padding: 0.75rem 1rem;
-        border: 2px solid #e5e7eb;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        text-align: center;
-        font-weight: 500;
-        transition: all 0.2s ease;
+        /* Quick reply buttons */
+        .quick-reply {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .time-slot:hover:not(.disabled):not(.selected) {
-        border-color: #c084fc;
-        background-color: #ede9fe;
-        transform: scale(1.05);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        .quick-reply::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--ofimundo-magenta), var(--ofimundo-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .time-slot.selected {
-        background-color: #22c55e;
-        border-color: #16a34a;
-        color: #ffffff;
-        font-weight: 700;
-        transform: scale(1.05);
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        .quick-reply span {
+            position: relative;
+            z-index: 1;
         }
 
-        .time-slot.disabled {
-        background-color: #f3f4f6;
-        color: #9ca3af;
-        cursor: not-allowed;
-        opacity: 0.5;
-        border-color: #e5e7eb;
+        .quick-reply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(199, 59, 110, 0.2);
         }
+
+        .quick-reply:hover::after {
+            opacity: 1;
+        }
+
+        .quick-reply:hover span {
+            color: white;
+        }
+
+        .quick-reply.selected {
+            background: linear-gradient(135deg, var(--ofimundo-magenta), var(--ofimundo-purple));
+            border-color: transparent;
+        }
+
+        .quick-reply.selected span {
+            color: white;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            animation: typingBounce 1.4s ease-in-out infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        /* Product cards in chat */
+        .product-chat-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-chat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(74, 59, 127, 0.15);
+        }
+
+        /* Scroll area */
+        .chat-scroll {
+            scroll-behavior: smooth;
+        }
+
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .chat-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Avatar */
+        .avatar-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(74, 59, 127, 0.15);
+        }
+        
+        .budget-indicator {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 50;
+        }
+        .logo-safe-area {
+            padding: calc(var(--ofimundo-logo-o) * 2);
+        }
+        
     </style>
 </head>
-<body class="font-sans antialiased bg-gray-50">
-    
+<body class="font-sans antialiased">
     <!-- Header/Navigation -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-3">
+            <div class="flex items-center justify-between">
+                <div class="logo-safe-area">
                     <img src="images/logo-ofimundo.png" alt="Ofimundo" class="h-auto w-[270px]">
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-ofimundo-purple transition">Inicio</a>
+                    <a href="#inicio" class="text-xl font-medium text-ofimundo-navy hover:text-ofimundo-purple transition">Inicio</a>
+                    <a href="#productos" class="text-xl font-medium text-gray-600 hover:text-ofimundo-purple transition">Productos</a>
+                    <a href="#categorias" class="text-xl font-medium text-gray-600 hover:text-ofimundo-purple transition">Categorías</a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Contenido -->>
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Breadcrumb -->
-        <nav class="mb-6">
-            <ol class="flex items-center gap-2 text-sm text-gray-500">
-                <li><a href="index.html" class="hover:text-ofimundo-purple">Inicio</a></li>
-                <li>/</li>
-                <li><a href="index.html" class="hover:text-ofimundo-purple">Impresoras</a></li>
-                <li>/</li>
-                <li class="text-ofimundo-navy font-medium">HP LaserJet Pro MFP M428fdw</li>
-            </ol>
-        </nav>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Main Content -->
-            <div class="lg:col-span-2 space-y-8">
-                <!-- Seccion de producto -  cabezera -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="grid md:grid-cols-2 gap-8 p-8">
-                        <!-- Product Image -->
-                        <div class="aspect-square bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl flex items-center justify-center">
-                            <img src="images/impresora-hp.png" alt="Impresora Multifunción HP" class="w-65 h-50 object-cover" >
-                        </div>
-                        
-                        <!-- Product Info -->
-                        <div class="flex flex-col">
-                            <div class="mb-4">
-                                <span class="inline-block px-3 py-1 bg-ofimundo-purple text-white text-xs font-semibold rounded-full mb-3">DESTACADO</span>
-                                <h1 class="text-3xl font-bold text-ofimundo-navy mb-3 leading-tight">Impresora Multifunción HP LaserJet Pro</h1>
-                                <p class="text-gray-600 leading-relaxed">Impresora láser multifunción profesional con conectividad avanzada, ideal para oficinas modernas que requieren alta productividad y calidad de impresión excepcional.</p>
-                            </div>
-                            
-                            <!-- Quick Specs Icons -->
-                            <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-ofimundo-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linejoin="round"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">Velocidad</p>
-                                        <p class="text-sm font-bold text-ofimundo-navy">27 ppm</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-ofimundo-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">Resolución</p>
-                                        <p class="text-sm font-bold text-ofimundo-navy">600 dpi</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-ofimundo-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">Bandeja de papel</p>
-                                        <p class="text-sm font-bold text-ofimundo-navy">250 hojas</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-ofimundo-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-width="2"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">Ciclo de trabajo</p>
-                                        <p class="text-sm font-bold text-ofimundo-navy">100k pág</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- CTA Buttons -->
-                            <div class="flex items-center gap-3">
-                                <a href="03.cotizar.html"
-                                class="flex-1 text-center px-4 py-3 bg-ofimundo-magenta text-white rounded-lg text-sm font-semibold hover:opacity-90 transition">
-                                    Cotizar
-                                </a>
-
-                                <a href="https://outlook.office.com/bookwithme/user/5d9fcae1581e49e8be2b6a163ed07576%40ofimundo.cl/meetingtype/x2Au6VY8SU-gJ1Uq4PePCw2?anonymous&ismsaljsauthenabled" target="_blank" rel="noopener noreferrer" class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
-                                    Agendar Reunión
-                                </a>
-
-                        </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sección de Servicio -->
-                <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200">
-                    <h2 class="text-2xl font-bold text-ofimundo-navy mb-2">Nuestro servicio asegura tu continuidad operativa</h2>
-                    <p class="text-gray-600 mb-8">Ofrecemos soporte integral para maximizar el rendimiento de tus equipos</p>
-                    
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-white rounded-xl p-6 shadow-sm">
-                            <div class="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8 text-ofimundo-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-ofimundo-navy mb-2">Reparación Inmediata</h3>
-                            <p class="text-sm text-gray-600 leading-relaxed">Técnicos certificados disponibles para resolver cualquier inconveniente con rapidez</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl p-6 shadow-sm">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="2"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-ofimundo-navy mb-2">Servicio Técnico</h3>
-                            <p class="text-sm text-gray-600 leading-relaxed">Mantenimiento preventivo y correctivo para extender la vida útil de tus equipos</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl p-6 shadow-sm">
-                            <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-ofimundo-navy mb-2">Ejecutivo de Cuenta</h3>
-                            <p class="text-sm text-gray-600 leading-relaxed">Asesoría personalizada para encontrar la mejor solución a tus necesidades</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sección de Contenido Adicional -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                    <h2 class="text-2xl font-bold text-ofimundo-navy mb-4 text-center">Solución completa para tu oficina moderna</h2>
-                    <p class="text-gray-600 text-center leading-relaxed mb-8 max-w-3xl mx-auto">
-                        La HP LaserJet Pro MFP M428fdw combina velocidad, calidad y conectividad en un diseño compacto. 
-                        Perfecta para equipos de trabajo que necesitan imprimir, escanear, copiar y enviar fax desde cualquier dispositivo. 
-                        Con tecnología de seguridad avanzada y gestión remota, mantendrás el control total de tu productividad.
-                    </p>
-                    
-                    <div class="flex justify-center gap-4">
-                        <button class="px-8 py-3 bg-ofimundo-magenta text-white rounded-lg font-semibold hover:opacity-90 transition">
-                            Solicitar Demo
-                        </button>
-                        <button class="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-ofimundo-purple hover:text-ofimundo-purple transition">
-                            Descargar Ficha Técnica
-                        </button>
-                    </div>
-                    
-                    <!-- Visual Placeholder -->
-                    <div class="mt-8 aspect-video bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 rounded-xl flex items-center justify-center">
-                        <svg class="w-32 h-32 text-ofimundo-purple opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1"/>
-                        </svg>
-                    </div>
-                </div>
+    <!-- Hero Section - PROPUESTA: ESTILO CHAT CONVERSACIONAL -->
+    <section id="inicio" class="hero-gradient py-8 md:py-16 px-4 min-h-screen">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-5xl mb-0 text-primary text-gradient title-xl mb-4 leading-tight">Encuentra el producto ideal para tu negocio</h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Responde algunas preguntas simples y te recomendaremos las mejores opciones</p>
             </div>
-
-            <!-- Sidebar -->
-            <div class="lg:col-span-1 space-y-6">
-                <!-- Brand/Model Card -->
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                    <h3 class="text-sm font-semibold text-gray-500 mb-3">MARCA Y MODELO</h3>
-                    <p class="text-lg font-bold text-ofimundo-navy mb-1">HP LaserJet Pro</p>
-                    <p class="text-sm text-gray-600">Modelo: MFP M428fdw</p>
-                </div>
-
-                <!-- Product Details -->
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                    <h3 class="text-sm font-semibold text-gray-500 mb-4">INFORMACIÓN TÉCNICA</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Tecnología</span>
-                            <span class="font-medium text-ofimundo-navy">Láser monocromática</span>
+            
+            <!-- Chat Container -->
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <!-- Chat Header -->
+                <div class="bg-gradient-to-r from-ofimundo-purple to-ofimundo-magenta px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center avatar-pulse">
+                            <svg class="w-6 h-6 text-ofimundo-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Funciones</span>
-                            <span class="font-medium text-ofimundo-navy">Impr., Copiar, Escanear, Fax</span>
-                        </div>
-                        <div class="flex justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Conectividad</span>
-                            <span class="font-medium text-ofimundo-navy">WiFi, Ethernet, USB</span>
-                        </div>
-                        <div class="flex justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Tamaño papel</span>
-                            <span class="font-medium text-ofimundo-navy">A4, Carta, Legal</span>
-                        </div>
-                        <div class="flex justify-between py-2">
-                            <span class="text-gray-600">Garantía</span>
-                            <span class="font-medium text-ofimundo-navy">1 año</span>
+                        <div>
+                            <h3 class="font-semibold text-grey">Asistente Ofimundo</h3>
+                            <p class="text-xs text-grey/70">En línea • Responde al instante</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Quick Description -->
-                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 border-2 border-ofimundo-purple">
-                    <h3 class="text-sm font-semibold text-ofimundo-purple mb-3">BENEFICIO PRINCIPAL</h3>
-                    <p class="text-ofimundo-navy font-medium leading-relaxed">
-                        Impresión profesional de alta velocidad con seguridad empresarial integrada y conectividad WiFi
-                    </p>
-                </div>
-
-                <!-- Quick View Features -->
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                    <h3 class="text-sm font-semibold text-gray-500 mb-4">CARACTERÍSTICAS CLAVE</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-ofimundo-navy">Impresión dúplex automática</p>
-                                <p class="text-xs text-gray-500">Ahorro de papel y tiempo</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-ofimundo-navy">Conectividad WiFi y Ethernet</p>
-                                <p class="text-xs text-gray-500">Imprime desde cualquier dispositivo</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-ofimundo-navy">Pantalla táctil a color</p>
-                                <p class="text-xs text-gray-500">Interfaz intuitiva y fácil de usar</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-ofimundo-navy">Seguridad avanzada</p>
-                                <p class="text-xs text-gray-500">Protección de datos empresariales</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CTA Card -->
-                <div class="bg-ofimundo-navy rounded-xl p-6 text-white">
-                    <h3 class="text-lg font-bold mb-2">¿Necesitas asesoría?</h3>
-                    <p class="text-sm text-gray-300 mb-4">Nuestros expertos te ayudarán a encontrar la mejor solución</p>
-                    <button class="w-full px-4 py-3 bg-white text-ofimundo-navy rounded-lg font-semibold hover:bg-gray-100 transition">
-                        Contactar Ahora
+                    <button id="restartBtn" class="text-white/70 hover:text-white transition p-2 rounded-full hover:bg-white/10 hidden" onclick="restartChat()">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
                     </button>
                 </div>
 
-                <!-- Service Highlight -->
-                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
-                    <h3 class="text-sm font-semibold text-blue-900 mb-3">SERVICIO OFIMUNDO</h3>
-                    <ul class="space-y-2 text-sm text-gray-700">
-                        <li class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span>Instalación y configuración incluida</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span>Garantía extendida disponible</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            <span>Soporte técnico prioritario</span>
-                        </li>
-                    </ul>
+                <!-- Chat Messages Area -->
+                <div id="chatArea" class="chat-scroll h-[400px] overflow-y-auto p-6 space-y-4 bg-gray-50">
+                    <!-- Los mensajes se agregarán aquí dinámicamente -->
+                </div>
+
+                <!-- Quick Replies Area -->
+                <div id="quickRepliesArea" class="border-t border-gray-100 p-4 bg-white">
+                    <!-- Las opciones de respuesta rápida se mostrarán aquí -->
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Product Lines Carousel -->
+    <section id="productos" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="mb-8">
+                <h2 class="text-3xl mb-0 text-primary text-gradient title-xl mb-2">
+                    Nuestras Líneas de Producto
+                </h2>
+                <p class="text-gray-600">
+                    Diferentes categorías para distintas necesidades
+                </p>
+            </div>
+
+            <!-- Swiper -->
+            <div class="swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Multifuncionales</h3>
+                        <p class="text-sm text-gray-500">Imprime, copia y escanea</p>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Automatización</h3>
+                        <p class="text-sm text-gray-500">Soluciones inteligentes</p>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"/>
+                            <path d="M8 21h8M12 17v4" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Impresoras Térmicas</h3>
+                        <p class="text-sm text-gray-500">Etiquetas y tickets</p>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="14" rx="2" stroke-width="2"/>
+                            <path d="M16 3v4M8 3v4" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Notebooks</h3>
+                        <p class="text-sm text-gray-500">Equipos corporativos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner-section">
+        <div class="banner-container">
+            <img src="images/banner.jpg" alt="banner 01">
+        </div>
+    </section>
+
+    <!-- Product Categories Section -->
+    <section id='categorias' class="py-16 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl mb-0 text-primary text-gradient title-xl mb-2">Categoría de Productos / Los Productos Más Buscados</h2>
+                    <p class="text-gray-600">Explora nuestras categorías principales</p>
+                </div>
+                <button class="text-sm font-medium text-ofimundo-purple hover:underline hidden md:block">
+                    Ver todas →
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Product Card 1 -->
+                <div class="card-hover relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-50 flex items-center justify-center">
+                        <img src="images/impresora-hp.png" alt="Impresora Multifunción HP" class="w-50 h-40 object-cover" >
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-ofimundo-red text-white text-xs font-bold rounded-full">-25% OFF</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-ofimundo-navy mb-2">
+                            Impresora Multifunción HP
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                            Impresora láser multifunción ideal para oficinas pequeñas y medianas
+                        </p>
+
+                        <div class="flex items-center gap-3">
+                            <button onclick="openModal()" class="flex-1 text-center px-4 py-3 bg-gradient-to-br from-[var(--ofimundo-purple)] to-[var(--ofimundo-magenta)] text-white rounded-lg text-sm font-semibold hover:from-[#241a78] hover:to-[#c62842] transition">
+                                Abrir Cotización
+                            </button>
+
+                            <a href="02.detalle.html"
+                            class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
+                                Quiero saber más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="card-hover relative bg-white border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="aspect-video bg-gradient-to-br from-blue-100 to-cyan-50 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-blue-500 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="4" y="4" width="16" height="16" rx="2" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="3" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-ofimundo-navy mb-2">
+                            Toner HP LaserJet Pro
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                            Toner original de alto rendimiento para impresoras HP LaserJet
+                        </p>
+
+                        <div class="flex items-center gap-3">
+                            <a href="03.cotizar.html"
+                            class="flex-1 text-center px-4 py-3 bg-gradient-to-br from-[var(--ofimundo-purple)] to-[var(--ofimundo-magenta)] text-white rounded-lg text-sm font-semibold hover:from-[#241a78] hover:to-[#c62842] transition">
+                                Abrir Cotización
+                            </a>
+
+                            <a href="02.detalle.html"
+                            class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
+                                Ver Detalle
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="card-hover bg-white border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="aspect-video bg-gradient-to-br from-rose-100 to-orange-50 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-rose-500 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="14" rx="2" stroke-width="2"/>
+                            <path d="M16 3v4M8 3v4" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-ofimundo-navy mb-2">
+                            Notebook Dell Inspiron 15
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                            Notebook empresarial con procesador Intel Core i5 de última generación
+                        </p>
+
+                        <div class="flex items-center gap-3">
+                            <button onclick="openSidebar()" class="flex-1 text-center px-4 py-3 bg-gradient-to-br from-[var(--ofimundo-purple)] to-[var(--ofimundo-magenta)]  text-white rounded-lg text-sm font-semibold hover:from-[#241a78] hover:to-[#c62842] transition">
+                                Abrir Cotización
+                            </button>
+
+                            <a href="02.detalle.html"
+                            class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
+                                Ver Producto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Product Lines Carousel -->
+    <section class="py-8">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto text-center col-lg-6">
+                    <h1 class="mb-0 text-primary text-gradient title-xl">Nuestros Partners</h1>
+                    <p class="lead">Trabajamos con las mejores marcas de tecnología, para ofrecerte el mix de productos que se ajuste a tus necesidades.</p>
+                </div>
+            </div>
+            <!-- Swiper -->
+            <div class="swiper swiper-2">
+                <div class="mt-5 swiper-wrapper wrapper-2">
+                    <div class="mb-4 swiper-slide col-lg-2 col-md-4 col-6 ms-auto ">
+                        <a href="https://www.brother.cl/" target="_blank">
+                            <img src="images/brother.svg" class="w-100 logo-color" alt="Brother">
+                        </a>
+                    </div>
+
+                    <div class="mb-4 swiper-slide col-lg-2 col-md-4 col-6 me-auto ">
+                        <a href="https://epson.cl/" target="_blank">
+                            <img src="images/epson.svg" class="w-100 logo-color" alt="Epson">
+                        </a>
+                    </div>
+
+                    <div class="mb-4 swiper-slide col-lg-2 col-md-4 col-6 me-auto ">
+                        <a href="https://www.kyoceradocumentsolutions.cl/" target="_blank">
+                            <img src="images/kyocera.svg" class="w-100 logo-color" alt="Kyocera">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Product Category -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-8">
+                <h2 class="text-3xl mb-0 text-primary text-gradient title-xl mb-2">Categoría de Productos</h2>
+                <p class="text-gray-600">Más opciones para tu negocio</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover bg-white border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="aspect-video bg-gradient-to-br from-indigo-100 to-purple-50 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-indigo-500 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-ofimundo-navy mb-2">Scanner Documental</h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2">Alta velocidad de escaneo para documentos corporativos</p>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openModal()" class="flex-1 text-center px-4 py-3 bg-gradient-to-br from-[var(--ofimundo-purple)] to-[var(--ofimundo-magenta)] text-white rounded-lg text-sm font-semibold hover:from-[#241a78] hover:to-[#c62842] transition">
+                                Abrir Cotización
+                            </button>
+
+                            <a href="02.detalle.html"
+                            class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
+                                Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="aspect-video bg-gradient-to-br from-teal-100 to-green-50 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-teal-500 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-ofimundo-navy mb-2">Tinta para Plotters</h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2">Cartuchos de tinta de alta calidad para impresión gran formato</p>
+                        <div class="flex items-center gap-3">
+                            <a href="03.cotizar.html"
+                            class="flex-1 text-center px-4 py-3 bg-gradient-to-br from-[var(--ofimundo-purple)] to-[var(--ofimundo-magenta)] text-white rounded-lg text-sm font-semibold hover:from-[#241a78] hover:to-[#c62842] transition">
+                                Abrir Cotización
+                            </a>
+
+                            <a href="02.detalle.html"
+                            class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
+                                Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-yellow-50 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-amber-500 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-ofimundo-navy mb-2">Papel Premium A4</h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2">Resma de 500 hojas papel bond de alta calidad</p>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openSidebar()" class="flex-1 text-center px-4 py-3 bg-gradient-to-br from-[var(--ofimundo-purple)] to-[var(--ofimundo-magenta)] text-white rounded-lg text-sm font-semibold hover:from-[#241a78] hover:to-[#c62842] transition">
+                                Abrir Cotización
+                            </button>
+
+                            <a href="02.detalle.html"
+                            class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
+                                Ver más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer - Diseño en capas con wave -->
     <footer class="relative bg-gray-900 overflow-hidden">
@@ -480,7 +598,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     <!-- Logo -->
                     <div>
-                        <img src="images/logo-principal.png"
+                        <img src="images/logo-ofimundo.png"
                             alt="Ofimundo" 
                             class="h-12 brightness-0 invert mb-6">
                         <p class="text-white/90 text-base mb-6 leading-relaxed">
@@ -552,5 +670,397 @@
         </div>
     </footer>
 
+    <!-- PROPUESTA DE COTIZACION 1  --> 
+    <!-- Modal Overlay -->
+    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 modal-overlay hidden flex items-center justify-center z-50 p-4" onclick="closeModalOnOverlay(event)">
+        <!-- Modal Content -->
+        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] modal-enter" onclick="event.stopPropagation()">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-ofimundo-purple to-ofimundo-magenta px-8 py-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-white">Cotizar</h2>
+                <button onclick="closeModal()" class="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="overflow-y-auto max-h-[calc(90vh-120px)] p-8">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Left Column - Form -->
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 border-2 border-yellow-200">
+                            <h3 class="font-bold text-ofimundo-navy mb-3">Producto Seleccionado</h3>
+                            <p class="text-sm text-gray-700 font-medium">Impresora HP LaserJet Pro MFP M428fdw</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold text-ofimundo-navy mb-4">Solicitud de Servicios de Impresión</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Cuotas mensuales:</label>
+                                        <input type="number" value="36" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Cantidad de equipos:</label>
+                                        <input type="number" value="2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Volumen de impresión mensual promedio:</label>
+                                    <input type="text" value="2,000 a 3,000" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Cobertura:</label>
+                                    <input type="text" value="5% blanco y negro" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Dirección de despacho equipo:</label>
+                                    <input type="text" placeholder="Ingrese dirección" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                </div>
+                                
+                                <button class="text-sm text-ofimundo-purple font-medium hover:underline">+ agregar otra dirección</button>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold text-ofimundo-navy mb-4">Datos de contacto</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Nombre:</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Teléfono:</label>
+                                    <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email:</label>
+                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Empresa:</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column - Info -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                            <h3 class="text-sm font-semibold text-gray-500 mb-3">CONFIGURACIÓN DE CARACTERÍSTICAS</h3>
+                            <p class="text-sm text-gray-600 mb-4">Ajusta los parámetros según tus necesidades de impresión</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold text-ofimundo-navy mb-4">Cotización</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="bg-white border-2 border-ofimundo-purple rounded-xl p-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 bg-ofimundo-purple text-white rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">1</div>
+                                        <div>
+                                            <h4 class="font-bold text-ofimundo-navy mb-2">Propuesta al mail automatizada (venta rápida)</h4>
+                                            <p class="text-sm text-gray-600 mb-3">Entrega de propuesta en línea, y/o envío automatizado por email.</p>
+                                            <p class="text-xs text-gray-500 italic">Contacto de refuerzo por whatsapp a las 2 hrs hábiles de enviado mail con propuesta</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ofimundo-magenta transition">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 bg-ofimundo-magenta text-white rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">2</div>
+                                        <div>
+                                            <h4 class="font-bold text-ofimundo-navy mb-2">Cotización a evaluar por ejecutivo</h4>
+                                            <p class="text-sm text-gray-600">Evaluación y envío de cotización por mail y WhatsApp, refuerzo por teléfono</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="border-t border-gray-200 px-8 py-6 bg-gray-50 flex justify-end gap-4">
+                <button onclick="closeModal()" class="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-gray-400 transition">
+                    Cancelar
+                </button>
+                <button class="px-8 py-3 bg-ofimundo-navy text-white rounded-lg font-semibold hover:opacity-90 transition">
+                    Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modalOverlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function closeModalOnOverlay(event) {
+            if (event.target === document.getElementById('modalOverlay')) {
+                closeModal();
+            }
+        }
+        
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal1();
+            }
+        });
+    </script>
+    <!-- FIN DE PROPUESTA COTIZACION 1 -->
+
+    <!-- PROPUESTA COTIZACION 3 -->
+    <!-- Sidebar Overlay -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-30 sidebar-overlay hidden z-50" onclick="closeSidebar()">
+        <!-- Sidebar Panel -->
+        <div class="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-2xl sidebar-enter overflow-hidden flex flex-col" onclick="event.stopPropagation()">
+            <!-- Sidebar Header -->
+            <div class="bg-gradient-to-r from-ofimundo-purple to-ofimundo-magenta px-8 py-6 flex items-center justify-between flex-shrink-0">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-1">Cotizar Producto</h2>
+                    <p class="text-sm text-white/80">Completa el formulario para recibir tu cotización</p>
+                </div>
+                <button onclick="closeSidebar()" class="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition ml-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Progress Indicator -->
+            <div class="px-8 py-4 bg-gray-50 border-b border-gray-200 flex-shrink-0">
+                <div class="flex items-center justify-between text-sm mb-2">
+                    <span class="font-medium text-ofimundo-navy">Paso 1 de 2</span>
+                    <span class="text-gray-500">Configuración del servicio</span>
+                </div>
+                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-ofimundo-purple to-ofimundo-magenta w-1/2 transition-all duration-500"></div>
+                </div>
+            </div>
+            
+            <!-- Sidebar Body - Scrollable -->
+            <div class="flex-1 overflow-y-auto px-8 py-6">
+                <div class="space-y-8">
+                    <!-- Product Info -->
+                    <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 border-2 border-yellow-200">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-8 h-8 text-ofimundo-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-ofimundo-navy mb-1">HP LaserJet Pro MFP</h3>
+                                <p class="text-sm text-gray-600">Modelo: M428fdw</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Configuration -->
+                    <div>
+                        <h3 class="text-xl font-bold text-ofimundo-navy mb-6">Configuración del Servicio</h3>
+                        
+                        <div class="space-y-5">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Cuotas mensuales</label>
+                                    <input type="number" value="36" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Cantidad equipos</label>
+                                    <input type="number" value="2" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Volumen mensual promedio</label>
+                                <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition">
+                                    <option>Menos de 1,000 páginas</option>
+                                    <option selected>2,000 a 3,000 páginas</option>
+                                    <option>3,000 a 5,000 páginas</option>
+                                    <option>Más de 5,000 páginas</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Cobertura de impresión</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button class="px-4 py-3 border-2 border-ofimundo-purple bg-ofimundo-purple text-white rounded-lg font-medium transition">
+                                        5% B&N
+                                    </button>
+                                    <button class="px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-lg font-medium hover:border-ofimundo-purple transition">
+                                        10% B&N
+                                    </button>
+                                    <button class="px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-lg font-medium hover:border-ofimundo-purple transition">
+                                        5% Color
+                                    </button>
+                                    <button class="px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-lg font-medium hover:border-ofimundo-purple transition">
+                                        10% Color
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Dirección de despacho</label>
+                                <textarea rows="2" placeholder="Ingrese dirección completa" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition"></textarea>
+                                <button class="mt-2 text-sm text-ofimundo-purple font-semibold hover:text-ofimundo-magenta flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                    Agregar otra dirección
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div>
+                        <h3 class="text-xl font-bold text-ofimundo-navy mb-6">Datos de Contacto</h3>
+                        
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre completo</label>
+                                <input type="text" placeholder="Ej: Juan Pérez González" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Teléfono</label>
+                                <input type="tel" placeholder="+56 9 1234 5678" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email corporativo</label>
+                                <input type="email" placeholder="nombre@empresa.cl" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Empresa</label>
+                                <input type="text" placeholder="Nombre de la empresa" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-ofimundo-purple focus:border-transparent transition">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quotation Type -->
+                    <div>
+                        <h3 class="text-xl font-bold text-ofimundo-navy mb-6">Tipo de Cotización</h3>
+                        
+                        <div class="space-y-4">
+                            <label class="block">
+                                <input type="radio" name="quotationType" class="sr-only peer" checked>
+                                <div class="border-2 border-gray-200 peer-checked:border-ofimundo-purple peer-checked:bg-purple-50 rounded-xl p-6 cursor-pointer transition">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 bg-ofimundo-purple text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">1</div>
+                                        <div>
+                                            <h4 class="font-bold text-ofimundo-navy mb-2">Propuesta automatizada (rápida)</h4>
+                                            <p class="text-sm text-gray-600 leading-relaxed">Recibe tu propuesta de inmediato por email con seguimiento por WhatsApp en 2 horas hábiles</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="block">
+                                <input type="radio" name="quotationType" class="sr-only peer">
+                                <div class="border-2 border-gray-200 peer-checked:border-ofimundo-magenta peer-checked:bg-pink-50 rounded-xl p-6 cursor-pointer transition">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 bg-ofimundo-magenta text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">2</div>
+                                        <div>
+                                            <h4 class="font-bold text-ofimundo-navy mb-2">Evaluación personalizada</h4>
+                                            <p class="text-sm text-gray-600 leading-relaxed">Un ejecutivo evaluará tu solicitud y te enviará una cotización personalizada por email, WhatsApp y teléfono</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar Footer - Fixed -->
+            <div class="border-t border-gray-200 px-8 py-6 bg-white flex-shrink-0">
+                <div class="flex gap-4">
+                    <button onclick="closeSidebar()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-gray-400 transition">
+                        Cancelar
+                    </button>
+                    <button class="flex-1 px-6 py-4 bg-ofimundo-navy text-white rounded-lg font-semibold hover:opacity-90 transition shadow-lg">
+                        Enviar Solicitud
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cargar el JS del chat -->
+    <script src="js/01.chat.js"></script>
+    <script src="js/02.cotizar-v1.js"></script>
+    <script src="js/02.cotizar-v2.js"></script>
+    <!--Swiper-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const wrapper = document.querySelector('.swiper-wrapper');
+        wrapper.innerHTML += wrapper.innerHTML;
+
+        const swiper = new Swiper('.swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 35,
+            speed: 3000,
+
+            freeMode: {
+                enabled: true,
+                momentum: false
+                },
+
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false
+                },
+
+            loop: true
+        });
+    </script>
+    <script>
+        // ===== Carrusel 2 =====
+        const wrapper2 = document.querySelector('.wrapper-2');
+        wrapper2.innerHTML += wrapper2.innerHTML;
+
+        const swiper2 = new Swiper('.swiper-2', {
+            slidesPerView: '5',
+            spaceBetween: 35,
+            speed: 3000,
+
+            freeMode: {
+                enabled: true,
+                momentum: false
+                },
+
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false
+                },
+
+            loop: true
+
+        });
+    </script>
 </body>
 </html>
