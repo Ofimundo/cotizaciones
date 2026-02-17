@@ -47,6 +47,24 @@
             }
         }
 
+        .title-xl {
+        font-size: 3rem;
+        line-height: 1.25;
+        letter-spacing: -0.025rem;
+        font-weight: 700;
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+            }
+
+            .text-gradient.text-primary {
+            background-image: linear-gradient(195deg, #2E2096 0%, #E3314F 100%)}
+
         .assistant-bubble {
             background: white;
             border-radius: 20px 20px 20px 4px;
@@ -186,6 +204,7 @@
         .logo-safe-area {
             padding: calc(var(--ofimundo-logo-o) * 2);
         }
+        
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -198,10 +217,9 @@
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="#inicio" class="text-sm font-medium text-ofimundo-navy hover:text-ofimundo-purple transition">Inicio</a>
-                    <a href="#productos" class="text-sm font-medium text-gray-600 hover:text-ofimundo-purple transition">Productos</a>
-                    <a href="#categorias" class="text-sm font-medium text-gray-600 hover:text-ofimundo-purple transition">Categorías</a>
-                    <button class="px-6 py-2 text-white bg-ofimundo-purple hover:from-[#241a78] hover:to-[#c62842] rounded-xl flex items-center justify-center transition-all shadow-lg">Contacto</button>
+                    <a href="#inicio" class="text-xl font-medium text-ofimundo-navy hover:text-ofimundo-purple transition">Inicio</a>
+                    <a href="#productos" class="text-xl font-medium text-gray-600 hover:text-ofimundo-purple transition">Productos</a>
+                    <a href="#categorias" class="text-xl font-medium text-gray-600 hover:text-ofimundo-purple transition">Categorías</a>
                 </nav>
             </div>
         </div>
@@ -211,7 +229,7 @@
     <section id="inicio" class="hero-gradient py-8 md:py-16 px-4 min-h-screen">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-5xl font-bold text-ofimundo-navy mb-4 leading-tight">Encuentra el producto ideal para tu negocio</h1>
+                <h1 class="text-3xl md:text-5xl mb-0 text-primary text-gradient title-xl mb-4 leading-tight">Encuentra el producto ideal para tu negocio</h1>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">Responde algunas preguntas simples y te recomendaremos las mejores opciones</p>
             </div>
             
@@ -252,82 +270,69 @@
 
     <!-- Product Lines Carousel -->
     <section id="productos" class="py-16 px-4">
-    <div class="max-w-7xl mx-auto">
+        <div class="max-w-7xl mx-auto">
 
-        <div class="mb-8">
-        <h2 class="text-3xl font-bold text-slate-800 mb-2">
-            Nuestras Líneas de Producto
-        </h2>
-        <p class="text-gray-600">
-            Diferentes categorías para distintas necesidades
-        </p>
+            <div class="mb-8">
+                <h2 class="text-3xl mb-0 text-primary text-gradient title-xl mb-2">
+                    Nuestras Líneas de Producto
+                </h2>
+                <p class="text-gray-600">
+                    Diferentes categorías para distintas necesidades
+                </p>
+            </div>
+
+            <!-- Swiper -->
+            <div class="swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Multifuncionales</h3>
+                        <p class="text-sm text-gray-500">Imprime, copia y escanea</p>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Automatización</h3>
+                        <p class="text-sm text-gray-500">Soluciones inteligentes</p>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"/>
+                            <path d="M8 21h8M12 17v4" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Impresoras Térmicas</h3>
+                        <p class="text-sm text-gray-500">Etiquetas y tickets</p>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="14" rx="2" stroke-width="2"/>
+                            <path d="M16 3v4M8 3v4" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-800 mb-1">Notebooks</h3>
+                        <p class="text-sm text-gray-500">Equipos corporativos</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Swiper -->
-        <div class="swiper">
-        <div class="swiper-wrapper">
-
-            <!-- Slide 1 -->
-            <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
-            <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center">
-                <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
-                </svg>
-            </div>
-            <h3 class="font-bold text-slate-800 mb-1">Multifuncionales</h3>
-            <p class="text-sm text-gray-500">Imprime, copia y escanea</p>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
-            <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full flex items-center justify-center">
-                <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <h3 class="font-bold text-slate-800 mb-1">Series Empresas</h3>
-            <p class="text-sm text-gray-500">Alta productividad</p>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
-            <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center">
-                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/>
-                </svg>
-            </div>
-            <h3 class="font-bold text-slate-800 mb-1">Automatización</h3>
-            <p class="text-sm text-gray-500">Soluciones inteligentes</p>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
-            <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-full flex items-center justify-center">
-                <svg class="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"/>
-                <path d="M8 21h8M12 17v4" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </div>
-            <h3 class="font-bold text-slate-800 mb-1">Impresoras Térmicas</h3>
-            <p class="text-sm text-gray-500">Etiquetas y tickets</p>
-            </div>
-
-            <!-- Slide 5 -->
-            <div class="swiper-slide w-64 p-6 bg-white rounded-xl border border-gray-200 text-center hover:shadow-lg transition">
-            <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center">
-                <svg class="w-10 h-10 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <rect x="2" y="7" width="20" height="14" rx="2" stroke-width="2"/>
-                <path d="M16 3v4M8 3v4" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </div>
-            <h3 class="font-bold text-slate-800 mb-1">Notebooks</h3>
-            <p class="text-sm text-gray-500">Equipos corporativos</p>
-            </div>
-
-        </div>
-        </div>
-
-    </div>
     </section>
 
     <!-- Product Categories Section -->
@@ -335,7 +340,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h2 class="text-3xl font-bold text-ofimundo-navy mb-2">Categoría de Productos</h2>
+                    <h2 class="text-3xl mb-0 text-primary text-gradient title-xl mb-2">Categoría de Productos / Los Productos Más Buscados</h2>
                     <p class="text-gray-600">Explora nuestras categorías principales</p>
                 </div>
                 <button class="text-sm font-medium text-ofimundo-purple hover:underline hidden md:block">
@@ -348,10 +353,7 @@
                 <!-- Product Card 1 -->
                 <div class="card-hover relative bg-white border border-gray-200 rounded-xl overflow-hidden">
                     <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-50 flex items-center justify-center">
-                        <svg class="w-20 h-20 text-ofimundo-purple opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"/>
-                            <path d="M8 21h8M12 17v4" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                        <img src="images/impresora-hp.png" alt="Impresora Multifunción HP" class="w-64 h-40 object-cover" >
                     </div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 bg-ofimundo-red text-white text-xs font-bold rounded-full">-25% OFF</span>
@@ -371,7 +373,7 @@
 
                             <a href="02.detalle.html"
                             class="flex-1 text-center px-4 py-3 border border-gray-300 text-ofimundo-navy rounded-lg text-sm font-medium hover:bg-ofimundo-navy transition">
-                                Ver más
+                                Quiero saber más
                             </a>
                         </div>
                     </div>
@@ -440,11 +442,47 @@
         </div>
     </section>
 
+
+
+    <!-- Product Lines Carousel -->
+    <section class="py-8">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto text-center col-lg-6">
+                    <h1 class="mb-0 text-primary text-gradient title-xl">Nuestros Partners</h1>
+                    <p class="lead">Trabajamos con las mejores marcas de tecnología, para ofrecerte el mix de productos que se ajuste a tus necesidades.</p>
+                </div>
+            </div>
+            <!-- Swiper -->
+            <div class="swiper swiper-2">
+                <div class="mt-5 swiper-wrapper wrapper-2">
+                    <div class="mb-4 swiper-slide col-lg-2 col-md-4 col-6 ms-auto ">
+                        <a href="https://www.brother.cl/" target="_blank">
+                            <img src="images/brother.svg" class="w-100 logo-color" alt="Brother">
+                        </a>
+                    </div>
+
+                    <div class="mb-4 swiper-slide col-lg-2 col-md-4 col-6 me-auto ">
+                        <a href="https://epson.cl/" target="_blank">
+                            <img src="images/epson.svg" class="w-100 logo-color" alt="Epson">
+                        </a>
+                    </div>
+
+                    <div class="mb-4 swiper-slide col-lg-2 col-md-4 col-6 me-auto ">
+                        <a href="https://www.kyoceradocumentsolutions.cl/" target="_blank">
+                            <img src="images/kyocera.svg" class="w-100 logo-color" alt="Kyocera">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Second Product Category -->
     <section class="py-16 px-4 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-ofimundo-navy mb-2">Categoría de Productos 2</h2>
+                <h2 class="text-3xl mb-0 text-primary text-gradient title-xl mb-2">Categoría de Productos</h2>
                 <p class="text-gray-600">Más opciones para tu negocio</p>
             </div>
             
@@ -959,26 +997,43 @@
     <!--Swiper-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-    const wrapper = document.querySelector('.swiper-wrapper');
-    wrapper.innerHTML += wrapper.innerHTML;
+        const wrapper = document.querySelector('.swiper-wrapper');
+        wrapper.innerHTML += wrapper.innerHTML;
 
-    const swiper = new Swiper('.swiper', {
-        slidesPerView: 'auto',
-        spaceBetween: 35,
-        speed: 3000,
+        const swiper = new Swiper('.swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 35,
+            speed: 3000,
 
-        freeMode: {
-            enabled: true,
-            momentum: false
-            },
+            freeMode: {
+                enabled: true,
+                momentum: false
+                },
 
-        autoplay: {
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false
+                },
+
+            loop: true
+        });
+    </script>
+    <script>
+        // ===== Carrusel 2 =====
+        const wrapper2 = document.querySelector('.wrapper-2');
+        wrapper2.innerHTML += wrapper2.innerHTML;
+
+        const swiper2 = new Swiper('.swiper-2', {
+            slidesPerView:"5",
+            loop: true,
+            centeredSlides: true,
+            speed: 4000,
+            allowTouchMove: true, 
+            disableOnInteraction: false,
+            autoplay:{
             delay: 0,
-            disableOnInteraction: false
-            },
-
-        loop: true
-    });
+            }
+        });
     </script>
 </body>
 </html>
