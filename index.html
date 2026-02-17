@@ -1024,15 +1024,21 @@
         wrapper2.innerHTML += wrapper2.innerHTML;
 
         const swiper2 = new Swiper('.swiper-2', {
-            slidesPerView:"5",
-            loop: true,
-            centeredSlides: true,
-            speed: 4000,
-            allowTouchMove: true, 
-            disableOnInteraction: false,
-            autoplay:{
-            delay: 0,
-            }
+            slidesPerView: '3',
+            spaceBetween: 35,
+            speed: 3000,
+
+            freeMode: {
+                enabled: true,
+                momentum: false
+                },
+
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false
+                },
+
+            loop: true
         });
     </script>
 </body>
