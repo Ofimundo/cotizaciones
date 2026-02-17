@@ -31,6 +31,20 @@
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
+        .banner-section {
+            width: 100%;
+        }
+
+        .banner-container {
+            width: 100%;
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Chat bubbles */
         .chat-bubble {
             animation: bubbleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -335,6 +349,12 @@
         </div>
     </section>
 
+    <section class="banner-section">
+        <div class="banner-container">
+            <img src="images/banner.jpg" alt="banner 01">
+        </div>
+    </section>
+
     <!-- Product Categories Section -->
     <section id='categorias' class="py-16 px-4 bg-white">
         <div class="max-w-7xl mx-auto">
@@ -353,7 +373,7 @@
                 <!-- Product Card 1 -->
                 <div class="card-hover relative bg-white border border-gray-200 rounded-xl overflow-hidden">
                     <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-50 flex items-center justify-center">
-                        <img src="images/impresora-hp.png" alt="Impresora Multifunción HP" class="w-64 h-40 object-cover" >
+                        <img src="images/impresora-hp.png" alt="Impresora Multifunción HP" class="w-50 h-40 object-cover" >
                     </div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 bg-ofimundo-red text-white text-xs font-bold rounded-full">-25% OFF</span>
@@ -1024,7 +1044,7 @@
         wrapper2.innerHTML += wrapper2.innerHTML;
 
         const swiper2 = new Swiper('.swiper-2', {
-            slidesPerView: '3',
+            slidesPerView: '5',
             spaceBetween: 35,
             speed: 3000,
 
@@ -1039,6 +1059,7 @@
                 },
 
             loop: true
+
         });
     </script>
 </body>
