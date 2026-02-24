@@ -5,156 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impresora HP LaserJet Pro - Ofimundo</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --ofimundo-purple: #4a3b7f;
-            --ofimundo-magenta: #c73b6e;
-            --ofimundo-red: #e94b57;
-            --ofimundo-navy: #2d2944;
-        }
-        
-        .bg-ofimundo-purple { background-color: var(--ofimundo-purple); }
-        .bg-ofimundo-magenta { background-color: var(--ofimundo-magenta); }
-        .bg-ofimundo-red { background-color: var(--ofimundo-red); }
-        .bg-ofimundo-navy { background-color: var(--ofimundo-navy); }
-        .text-ofimundo-purple { color: var(--ofimundo-purple); }
-        .text-ofimundo-magenta { color: var(--ofimundo-magenta); }
-        .text-ofimundo-red { color: var(--ofimundo-red); }
-        .text-ofimundo-navy { color: var(--ofimundo-navy); }
-        .border-ofimundo-purple { border-color: var(--ofimundo-purple); }
-        .border-ofimundo-magenta { border-color: var(--ofimundo-magenta); }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-        * {
-        font-family: 'Inter', sans-serif;
-        }
-
-        /* Fondo modal */
-        .modal-backdrop {
-        background-color: rgba(45, 41, 68, 0.7);
-        backdrop-filter: blur(4px);
-        }
-
-        /* =========================
-        Indicador de pasos
-        ========================= */
-        .step-indicator {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        transition: all 0.2s ease;
-        }
-
-        .step-indicator.active {
-        background-color: var(--color-primary);
-        color: #ffffff;
-        font-weight: 600;
-        }
-
-        .step-indicator.completed {
-        background-color: #22c55e;
-        color: #ffffff;
-        font-weight: 600;
-        }
-
-        .step-indicator.pending {
-        background-color: #e5e7eb;
-        color: #6b7280;
-        }
-
-        /* =========================
-        Calendario
-        ========================= */
-        .calendar-day {
-        width: 2.5rem;
-        height: 2.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        }
-
-        .calendar-day:hover:not(.disabled):not(.selected) {
-        background-color: #ede9fe;
-        transform: scale(1.1);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .calendar-day.selected {
-        background-color: #22c55e;
-        color: #ffffff;
-        font-weight: 700;
-        transform: scale(1.05);
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-        }
-
-        .calendar-day.disabled {
-        background-color: #f3f4f6;
-        color: #9ca3af;
-        cursor: not-allowed;
-        text-decoration: line-through;
-        opacity: 0.6;
-        }
-
-        .calendar-day.today {
-        border: 2px solid #a855f7;
-        }
-
-        /* =========================
-        Horarios
-        ========================= */
-        .time-slot {
-        padding: 0.75rem 1rem;
-        border: 2px solid #e5e7eb;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        text-align: center;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        }
-
-        .time-slot:hover:not(.disabled):not(.selected) {
-        border-color: #c084fc;
-        background-color: #ede9fe;
-        transform: scale(1.05);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .time-slot.selected {
-        background-color: #22c55e;
-        border-color: #16a34a;
-        color: #ffffff;
-        font-weight: 700;
-        transform: scale(1.05);
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-        }
-
-        .time-slot.disabled {
-        background-color: #f3f4f6;
-        color: #9ca3af;
-        cursor: not-allowed;
-        opacity: 0.5;
-        border-color: #e5e7eb;
-        }
-    </style>
+    <link rel="stylesheet" href="css/estilo-cotizaciones.css">
 </head>
 <body class="font-sans antialiased bg-gray-50">
     
     <!-- Header/Navigation -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <header class="header-blinky bg-white border-b border-gray-200 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-3">
-                    <img src="images/logo-ofimundo.png" alt="Ofimundo" class="h-auto w-[270px]">
+            <div class="flex items-center justify-between py-6">
+                <div class="logo-safe-area">
+                    <a href="index.html">
+                        <img src="images/logo-ofimundo.png" alt="Ofimundo" class="h-auto w-[270px]">
+                    </a>
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-ofimundo-purple transition">Inicio</a>
+                    <a href="index.html" class="text-xl font-medium text-ofimundo-navy hover:text-ofimundo-purple transition">Inicio</a>
                 </nav>
             </div>
         </div>
