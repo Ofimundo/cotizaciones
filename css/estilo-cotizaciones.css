@@ -1,0 +1,629 @@
+body {
+    padding-top: 50px; /* debe ser igual o ligeramente mayor a la altura del navbar */
+
+}
+
+/* =====================================================
+   OFIMUNDO - VARIABLES
+===================================================== */
+
+:root {
+    --ofimundo-purple: #2e2096;
+    --ofimundo-magenta: #e3314f;
+    --ofimundo-red: #e3314f;
+    --ofimundo-navy: #2d2944;
+    --ofimundo-logo-o: 16px;
+}
+
+/* =====================================================
+   UTILIDADES DE COLOR
+===================================================== */
+
+.bg-ofimundo-purple { background-color: var(--ofimundo-purple); }
+.bg-ofimundo-magenta { background-color: var(--ofimundo-magenta); }
+.bg-ofimundo-red { background-color: var(--ofimundo-red); }
+.bg-ofimundo-navy { background-color: var(--ofimundo-navy); }
+
+.text-ofimundo-purple { color: var(--ofimundo-purple); }
+.text-ofimundo-magenta { color: var(--ofimundo-magenta); }
+.text-ofimundo-red { color: var(--ofimundo-red); }
+.text-ofimundo-navy { color: var(--ofimundo-navy); }
+
+.border-ofimundo-purple { border-color: var(--ofimundo-purple); }
+
+/* =====================================================
+   TITULOS Y GRADIENTES
+===================================================== */
+
+.header-blinky {
+    font-family: 'Bangers', cursive;
+}
+
+.title-xl {
+    font-size: 3rem;
+    line-height: 1.25;
+    letter-spacing: -0.025rem;
+    font-weight: 700;
+}
+
+.text-gradient {
+    background: linear-gradient(
+        to bottom right,
+        var(--ofimundo-purple),
+        var(--ofimundo-magenta)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero-gradient {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* =====================================================
+   CHAT UI
+===================================================== */
+
+.chat-bubble {
+    animation: bubbleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes bubbleIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.assistant-bubble {
+    background: white;
+    border-radius: 20px 20px 20px 4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.user-bubble {
+    background: linear-gradient(135deg, var(--ofimundo-purple), var(--ofimundo-magenta));
+    border-radius: 20px 20px 4px 20px;
+    color: white;
+}
+
+/* =====================================================
+   QUICK REPLIES
+===================================================== */
+
+.quick-reply {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-reply::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--ofimundo-magenta), var(--ofimundo-purple));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quick-reply span {
+    position: relative;
+    z-index: 1;
+}
+
+.quick-reply:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(199, 59, 110, 0.2);
+}
+
+.quick-reply:hover::after {
+    opacity: 1;
+}
+
+.quick-reply:hover span {
+    color: white;
+}
+
+.quick-reply.selected {
+    background: linear-gradient(135deg, var(--ofimundo-magenta), var(--ofimundo-purple));
+    border-color: transparent;
+}
+
+.quick-reply.selected span {
+    color: white;
+}
+
+/* =====================================================
+   TYPING INDICATOR
+===================================================== */
+
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+}
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(74, 59, 127, 0.15);
+}
+
+.product-chat-card {
+    transition: all 0.3s ease;
+}
+
+.product-chat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(74, 59, 127, 0.15);
+}
+
+/* =====================================================
+   SCROLL PERSONALIZADO
+===================================================== */
+
+/* Estado compacto */
+.chat-compact #chatArea {
+    height: 100px;
+    transition: height 0.35s ease;
+}
+
+/* Estado expandido */
+.chat-expanded #chatArea {
+    height: 520px;
+}
+
+/* Opcional: animación suave del contenedor */
+#chatContainer {
+    transition: all 0.35s ease;
+}
+
+.chat-scroll {
+    scroll-behavior: smooth;
+}
+
+.chat-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* =====================================================
+   AVATAR
+===================================================== */
+
+.avatar-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* =====================================================
+   BANNER SWIPER (AISLADO)
+===================================================== */
+
+.banner-section {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    padding: 0px 16px; /* separación lateral */
+}
+
+.swiper-banner {
+    width: 100%;
+    max-width: 1200px; /* controla tamaño máximo */
+    aspect-ratio: 16 / 5;
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px; /* bordes redondeados */
+}
+
+.swiper-banner .swiper-slide {
+    display: flex;
+}
+
+.swiper-banner .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contador */
+.banner-counter {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 10;
+}
+
+/* =====================================================
+   SWIPER PRODUCTOS
+===================================================== */
+
+.swiper-productos {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-productos .swiper-slide {
+    width: 260px;
+}
+
+/* =====================================================
+   SWIPER PARTNERS
+===================================================== */
+
+.swiper-partners {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-partners .swiper-slide {
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partner-logo {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    transition: 0.3s ease;
+    opacity: 0.7;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+
+
+
+/* =====================================================
+   ESTILO DE 02.DETALLE.HTML
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+font-family: 'Inter', sans-serif;
+}
+/* Fondo modal */
+.modal-backdrop {
+background-color: rgba(45, 41, 68, 0.7);
+backdrop-filter: blur(4px);
+}
+
+/* =========================
+Indicador de pasos
+========================= */
+.step-indicator {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.5rem 1rem;
+border-radius: 0.5rem;
+transition: all 0.2s ease;
+}
+
+.step-indicator.active {
+background-color: var(--color-primary);
+color: #ffffff;
+font-weight: 600;
+}
+
+.step-indicator.completed {
+background-color: #22c55e;
+color: #ffffff;
+font-weight: 600;
+}
+
+.step-indicator.pending {
+background-color: #e5e7eb;
+color: #6b7280;
+}
+
+/* =========================
+Calendario
+========================= */
+.calendar-day {
+width: 2.5rem;
+height: 2.5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 0.5rem;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.calendar-day:hover:not(.disabled):not(.selected) {
+background-color: #ede9fe;
+transform: scale(1.1);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-day.selected {
+background-color: #22c55e;
+color: #ffffff;
+font-weight: 700;
+transform: scale(1.05);
+box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.calendar-day.disabled {
+background-color: #f3f4f6;
+color: #9ca3af;
+cursor: not-allowed;
+text-decoration: line-through;
+opacity: 0.6;
+}
+
+.calendar-day.today {
+border: 2px solid #a855f7;
+}
+
+/* =========================
+Horarios
+========================= */
+.time-slot {
+padding: 0.75rem 1rem;
+border: 2px solid #e5e7eb;
+border-radius: 0.5rem;
+cursor: pointer;
+text-align: center;
+font-weight: 500;
+transition: all 0.2s ease;
+}
+
+.time-slot:hover:not(.disabled):not(.selected) {
+border-color: #c084fc;
+background-color: #ede9fe;
+transform: scale(1.05);
+box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.time-slot.selected {
+background-color: #22c55e;
+border-color: #16a34a;
+color: #ffffff;
+font-weight: 700;
+transform: scale(1.05);
+box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.time-slot.disabled {
+background-color: #f3f4f6;
+color: #9ca3af;
+cursor: not-allowed;
+opacity: 0.5;
+border-color: #e5e7eb;
+}
+
+/* =========================
+MANÚ
+========================= */
+
+/* Contenedor exterior */
+.navbar-wrapper {
+    position: fixed;
+    top: 5px;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Navbar principal */
+.navbar {
+    max-width: 1200px;   /* ancho máximo del contenido */
+    margin: 0 auto; 
+    background: #fff;
+    padding: 18px 30px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 230px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-text strong {
+    font-size: 20px;
+    color: #1e2a38;
+}
+
+.logo-text span {
+    font-size: 12px;
+    color: #6c7a89;
+}
+
+/* Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #2e3a4d;
+    font-weight: 500;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #6c3df4;
+}
+
+.theme-icon {
+    cursor: pointer;
+    font-size: 18px;
+    color: #2e3a4d;
+    transition: 0.3s;
+}
+
+.theme-icon:hover {
+    color: #6c3df4;
+}
+
+/* Botón */
+.btn-account {
+    background: linear-gradient(135deg, #e3314f, #8f2fff);
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(143,47,255,0.3);
+}
+
+.btn-account:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(143,47,255,0.4);
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Mega menu oculto por defecto */
+.mega-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px 0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    z-index: 100;
+}
+
+/* Mostrar al hacer hover */
+.dropdown:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Cada item */
+.mega-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 14px 25px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.mega-item:hover {
+    background: #f5f7ff;
+}
+
+/* Icono */
+.mega-item .icon {
+    width: 36px;
+    height: 36px;
+    background: #eef1ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c3df4;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+/* Texto */
+.mega-item h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2e3a4d;
+}
+
+.mega-item p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #6c7a89;
+}
