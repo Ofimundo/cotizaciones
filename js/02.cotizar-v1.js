@@ -15,3 +15,20 @@ document.addEventListener('keydown', function(event) {
         closeSidebar();
     }
 });
+
+
+/* =========================
+   BOTONES COTIZACIÓN
+========================= */
+
+document.querySelectorAll('.btn-cotizar').forEach(button => {
+    button.addEventListener('click', function () {
+
+        const card = this.closest('.card-hover');
+        const nombre = card.querySelector('.nombre-producto').textContent.trim();
+
+        document.getElementById('nombre_equipo').textContent = nombre;
+
+        openSidebar();
+    });
+});
